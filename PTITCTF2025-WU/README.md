@@ -1,9 +1,9 @@
-### PTITCTF2025-Final / Advanced Persistent Threat WU
+### [Forensics] Advanced Persistent Threat
 
 
-![alt text](image.png)
+![alt text](images/image.png)
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 - [Link tải](https://drive.google.com/drive/folders/1O7ALmxcpAmpG4h_NMH8otqkfDoYgRNwL?usp=sharing)
 
@@ -33,11 +33,11 @@
 
 - Ở đây, sau khi đã lướt qua 1 lượt thì mình tìm được 1 tiến trình khả nghi (thật ra là nhờ ChatGPT đánh giá hộ)
 
-    ![alt text](image-2.png)
+    ![alt text](images/image-2.png)
 
     - Thường `sihost.exe` chạy dưới quyền `SYSTEM` và tiêu tốn ít `RAM`.
 
-    ![alt text](image-3.png)
+    ![alt text](images/image-3.png)
 
     - Nhưng tại đây nó lại chạy dưới `Administrator`, `RAM ~70 Mb` (Thường tiến trình này chỉ ăn khoảng `10Mb` theo ChatGPT)
 
@@ -45,11 +45,11 @@
 
 - Tiến hành dump file, vào `Task Manager` → `Details` → `Create dump file`. File được lưu tại đường dẫn như trong hình.
 
-    ![alt text](image-4.png)
+    ![alt text](images/image-4.png)
 
 - Có một điều mình thấy hơi bất ngờ là ban ra đề đã ... dump sẵn file đấy từ trước rồi 😁. Vậy là đã xong phần process với kết quả tìm được có thể là `sihost.exe`.
 
-    ![alt text](image-5.png)
+    ![alt text](images/image-5.png)
 
 - Process: `sihost.exe`
 
@@ -68,7 +68,7 @@
 
     - Và mình đã thành công khi tìm thấy C2 tại: `sushiprosuno.zya.me`
 
-    ![alt text](image-6.png)
+    ![alt text](images/image-6.png)
 
 - C2 server: `sushiprosuno.zya.me`
 
@@ -82,25 +82,25 @@
 
     - Thì nó hiện luôn 1 số thứ khá hay ho
 
-    ![alt text](image-7.png)
+    ![alt text](images/image-7.png)
 
-    ![alt text](image-8.png)
+    ![alt text](images/image-8.png)
 
     - Rồi, rõ ràng là từ C2 → gửi 1 cái gì đó tới `POST /bot8303799453:AAHM9YajCg3m5Hp1nO06_CMAgHtT7MO7l-E/sendMessage`. Nhưng khi lấy `sha256` nó không đúng với hash của đề.
     
-    ![alt text](image-9.png)
+    ![alt text](images/image-9.png)
 
     - Thử xem lại ở chỗ đoạn có title là flag format `PTITCTF`, đây có thể là dữ liệu gửi đến C2 server.
 
-    ![alt text](image-12.png)
+    ![alt text](images/image-12.png)
     
     - Mình đã thử tiếp với `Kitagawa_Marin_1_bot` cũng sai, bất lực hỏi `chatGPT` thì nó rcm cho như sau:
 
-    ![alt text](image-11.png)
+    ![alt text](images/image-11.png)
 
     - Và thật tuyệt, nó đúng với `sha256` mà bài đã cho
     
-    ![alt text](image-10.png)
+    ![alt text](images/image-10.png)
 
 - Vậy, tên của bot: `S7r4Nge_H0W_7hERe'2_4Lw4y2_4_L177le_m0re_1nN0cENCE_LeF7_70_L02E`
 
@@ -108,12 +108,13 @@
 
 - Kết quả cũng dễ đoán, sau khi đã đúng hết 2 phần sau thì chắc chắn sha của flag cũng đúng
 
-    ![alt text](image-14.png)
+    ![alt text](images/image-14.png)
 
-    ![alt text](image-13.png)
+    ![alt text](images/image-13.png)
 
 - Flag: `PTITCTF{sihost.exe---sushiprosuno.zya.me---S7r4Nge_H0W_7hERe'2_4Lw4y2_4_L177le_m0re_1nN0cENCE_LeF7_70_L02E}`
 
 ##### Lời kết
+
 
 - **!Peak**, lúc về ngồi chill chill làm lại câu này mới được 🐧, câu này chắc khó nhất ở bước 1 tìm pid. Vậy là đã kết thúc 1 mùa `PTITCTF` có thể nói là khá thành công đối với mình và team `RATCTF`. Finally, Cảm ơn BTC, các thầy, các anh author <3 ...
